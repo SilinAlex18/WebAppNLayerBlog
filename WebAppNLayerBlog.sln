@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppNLayerBlog.NUnitTest"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppNLayerBlog.DataAccessLayer", "WebAppNLayerBlog.DataAccessLayer\WebAppNLayerBlog.DataAccessLayer.csproj", "{3AA20435-31F3-4746-8BF0-2BF3DA23C512}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppNLayerBlog.BusinessLogicLayer", "WebAppNLayerBlog.BusinessLogicLayer\WebAppNLayerBlog.BusinessLogicLayer.csproj", "{FF6B05A3-B03A-491B-BD8A-4E54AC4CBD82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3AA20435-31F3-4746-8BF0-2BF3DA23C512}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AA20435-31F3-4746-8BF0-2BF3DA23C512}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AA20435-31F3-4746-8BF0-2BF3DA23C512}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF6B05A3-B03A-491B-BD8A-4E54AC4CBD82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF6B05A3-B03A-491B-BD8A-4E54AC4CBD82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF6B05A3-B03A-491B-BD8A-4E54AC4CBD82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF6B05A3-B03A-491B-BD8A-4E54AC4CBD82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
