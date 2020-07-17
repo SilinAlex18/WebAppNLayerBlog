@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppNLayerBlog", "WebAppN
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppNLayerBlog.NUnitTest", "WebAppNLayerBlog.NUnitTest\WebAppNLayerBlog.NUnitTest.csproj", "{559A5FCF-E459-43F3-9F87-50968E3618CB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppNLayerBlog.DataAccessLayer", "WebAppNLayerBlog.DataAccessLayer\WebAppNLayerBlog.DataAccessLayer.csproj", "{3AA20435-31F3-4746-8BF0-2BF3DA23C512}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{559A5FCF-E459-43F3-9F87-50968E3618CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{559A5FCF-E459-43F3-9F87-50968E3618CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{559A5FCF-E459-43F3-9F87-50968E3618CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AA20435-31F3-4746-8BF0-2BF3DA23C512}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AA20435-31F3-4746-8BF0-2BF3DA23C512}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AA20435-31F3-4746-8BF0-2BF3DA23C512}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AA20435-31F3-4746-8BF0-2BF3DA23C512}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
