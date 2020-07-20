@@ -1,0 +1,28 @@
+﻿@model WebAppNLayerBlog.BusinessLogicLayer.ViewModels.Guest.GuestDetailViewModel
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="card">
+    <div class="card-body">
+        <a href="#" class="badge badge-primary">@Model.Category.Name</a>
+        <h5 class="card-title">@Model.Title</h5>
+        <h6 class="card-subtitle mb-2 text-muted">@Model.Subtitle</h6>
+        <p class="card-text">@Model.Description</p>
+    </div>
+</div>
+
+<div class="card mt-3">
+    <div class="card-body">
+        @foreach (var comments in Model.Comments)
+        {
+            <div class="media">
+                @*<img src="..." class="mr-3" alt="...">*@
+                <div class="media-body">
+                    <h5 class="mt-0">@comments.User.UserName</h5>
+                    @comments.Text
+                </div>
+            </div>
+        }
+    </div>
+</div>
