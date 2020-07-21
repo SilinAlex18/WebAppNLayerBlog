@@ -23,11 +23,18 @@ namespace WebAppNLayerBlog.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index(int? pageNumber)
+        public IActionResult Index(string searchString, int? pageNumber)
         {
+            ViewData["currentFilter"] = searchString;
+
             int pageSize = 1;
 
             var guest = _guestManager.GetGuestIndex();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                guest = guest.Where(s => s.Title.Contains(searchString) || s.Subtitle.Contains(searchString));
+            }
 
             return View(PageViewModel<GuestIndexViewModel>.CreateAsync(guest.AsQueryable(), pageNumber ?? 1, pageSize));
         }
