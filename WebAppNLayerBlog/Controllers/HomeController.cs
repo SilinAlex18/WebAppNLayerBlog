@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebAppNLayerBlog.BusinessLogicLayer.Managers;
+using WebAppNLayerBlog.BusinessLogicLayer.ViewModels;
+using WebAppNLayerBlog.BusinessLogicLayer.ViewModels.Guest;
 using WebAppNLayerBlog.Models;
 
 namespace WebAppNLayerBlog.Controllers
@@ -21,10 +23,13 @@ namespace WebAppNLayerBlog.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int? pageNumber)
         {
+            int pageSize = 1;
+
             var guest = _guestManager.GetGuestIndex();
-            return View(guest);
+
+            return View(PageViewModel<GuestIndexViewModel>.CreateAsync(guest.AsQueryable(), pageNumber ?? 1, pageSize));
         }
 
         public IActionResult Detail(int id)

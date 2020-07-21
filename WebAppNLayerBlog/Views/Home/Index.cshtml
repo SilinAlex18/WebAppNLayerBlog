@@ -1,6 +1,9 @@
-﻿@model IEnumerable<WebAppNLayerBlog.BusinessLogicLayer.ViewModels.Guest.GuestIndexViewModel>
+﻿@using WebAppNLayerBlog.BusinessLogicLayer.ViewModels
+@model PageViewModel<WebAppNLayerBlog.BusinessLogicLayer.ViewModels.Guest.GuestIndexViewModel>
 @{
     ViewData["Title"] = "Home Page";
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
 
 <div class="text-center">
@@ -25,3 +28,18 @@
         </div>
     }
 </div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @prevDisabled">
+            <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)" tabindex="-1" aria-disabled="true">Previous</a>
+        </li>
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item"><a class="page-link" asp-action="Index" asp-route-pageNumber="@i">@i</a></li>
+        }
+        <li class="page-item @nextDisabled">
+            <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)">Next</a>
+        </li>
+    </ul>
+</nav>
