@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebAppNLayerBlog.BusinessLogicLayer.Managers;
-using WebAppNLayerBlog.BusinessLogicLayer.ViewModels;
-using WebAppNLayerBlog.BusinessLogicLayer.ViewModels.Guest;
 using WebAppNLayerBlog.Models;
 
 namespace WebAppNLayerBlog.Controllers
@@ -33,10 +31,10 @@ namespace WebAppNLayerBlog.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                guest = guest.Where(s => s.Title.Contains(searchString) || s.Subtitle.Contains(searchString));
+                guest = _guestManager.GetGuestSearch(searchString);
             }
 
-            return View(PageViewModel<GuestIndexViewModel>.CreateAsync(guest.AsQueryable(), pageNumber ?? 1, pageSize));
+            return View(_guestManager.GuestPaging(guest.AsQueryable(), pageNumber ?? 1, pageSize));
         }
 
         public IActionResult Detail(int id)

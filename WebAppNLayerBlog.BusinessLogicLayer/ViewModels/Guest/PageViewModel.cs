@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WebAppNLayerBlog.BusinessLogicLayer.ViewModels
+namespace WebAppNLayerBlog.BusinessLogicLayer.ViewModels.Guest
 {
     public class PageViewModel<T> : List<T>
     {
@@ -32,13 +32,6 @@ namespace WebAppNLayerBlog.BusinessLogicLayer.ViewModels
             {
                 return (PageIndex < TotalPages);
             }
-        }
-
-        public static PageViewModel<T> CreateAsync(IQueryable<T> source, int pageIndex, int pageSize)
-        {
-            var count = source.Count();
-            var items = source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-            return new PageViewModel<T>(items, count, pageIndex, pageSize);
         }
     }
 }
