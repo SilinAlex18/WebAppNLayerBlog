@@ -5,17 +5,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using WebAppNLayerBlog.BusinessLogicLayer.Managers;
+using WebAppNLayerBlog.BusinessLogicLayer.IRepositories;
 using WebAppNLayerBlog.Models;
 
 namespace WebAppNLayerBlog.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly GuestManager _guestManager;
+        private readonly IGuestManager _guestManager;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(GuestManager guestManager, ILogger<HomeController> logger)
+        public HomeController(IGuestManager guestManager, ILogger<HomeController> logger)
         {
             _guestManager = guestManager;
             _logger = logger;
@@ -34,7 +34,7 @@ namespace WebAppNLayerBlog.Controllers
                 guest = _guestManager.GetGuestSearch(searchString);
             }
 
-            return View(_guestManager.GuestPaging(guest.AsQueryable(), pageNumber ?? 1, pageSize));
+            return View(_guestManager.GuestPaging(pageNumber ?? 1, pageSize));
         }
 
         public IActionResult Detail(int id)

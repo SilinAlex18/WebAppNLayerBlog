@@ -10,7 +10,7 @@ using WebAppNLayerBlog.DataAccessLayer.Data;
 
 namespace WebAppNLayerBlog.BusinessLogicLayer.Managers
 {
-    public class GuestManager : IGuestRepository
+    public class GuestManager : IGuestManager
     {
         private readonly IMapper _mapper;
         private readonly ApplicationDbContext _context;
@@ -21,31 +21,39 @@ namespace WebAppNLayerBlog.BusinessLogicLayer.Managers
             _mapper = mapper;
         }
 
-        public IEnumerable<GuestIndexViewModel> GetGuestIndex()
+        public IEnumerable<PageViewModel> GetGuestIndex()
         {
-            var model = _context.Posts.Include(u => u.Category).ToList();
-            return _mapper.Map<List<GuestIndexViewModel>>(model);
+            var posts = _context.Posts.Include(u => u.Category).ToList();
+            return _mapper.Map<List<PageViewModel>>(posts);
         }
 
         public GuestDetailViewModel GetGuestDetail(int id)
         {
-            var model = _context.Posts.Include(u => u.Category)
+            var post = _context.Posts.Include(u => u.Category)
                 .Include(u => u.Comments).ThenInclude(u => u.User).FirstOrDefault(u => u.Id == id);
-            return _mapper.Map<GuestDetailViewModel>(model);
+            return _mapper.Map<GuestDetailViewModel>(post);
         }
 
-        public IEnumerable<GuestIndexViewModel> GetGuestSearch(string searchString)
+        public IEnumerable<PageViewModel> GetGuestSearch(string searchString)
         {
-            var model = _context.Posts.Include(u => u.Category)
+            var posts = _context.Posts.Include(u => u.Category)
                 .Where(s => s.Title.Contains(searchString) || s.Subtitle.Contains(searchString)).ToList();
-            return _mapper.Map<List<GuestIndexViewModel>>(model);
+            return _mapper.Map<List<PageViewModel>>(posts);
         }
 
-        public PageViewModel<GuestIndexViewModel> GuestPaging(IQueryable<GuestIndexViewModel> source, int pageIndex, int pageSize)
+        public PageViewModel GuestPaging(int pageIndex, int pageSize)
         {
-            var count = source.Count();
-            var items = source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-            return new PageViewModel<GuestIndexViewModel>(items, count, pageIndex, pageSize);
+            var posts = _context.Posts.Include(u => u.Category).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+
+            var viewModel = new PageViewModel();
+            viewModel.PostViewModels = _mapper.Map<List<PostViewModel>>(posts);
+            viewModel.PageIndex = pageIndex;
+            int totalPages = (int)Math.Ceiling(_context.Posts.Count() / (double)pageSize);
+            viewModel.TotalPages = totalPages;
+            viewModel.HasPreviousPage = pageIndex > 1;
+            viewModel.HasNextPage = pageIndex < totalPages;
+
+            return viewModel;
         }
     }
 }

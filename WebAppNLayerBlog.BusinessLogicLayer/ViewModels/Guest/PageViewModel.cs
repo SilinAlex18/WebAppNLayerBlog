@@ -2,36 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WebAppNLayerBlog.DataAccessLayer.Models;
 
 namespace WebAppNLayerBlog.BusinessLogicLayer.ViewModels.Guest
 {
-    public class PageViewModel<T> : List<T>
+    public class PageViewModel
     {
-        public int PageIndex { get; private set; }
-        public int TotalPages { get; private set; }
-
-        public PageViewModel(List<T> items, int count, int pageIndex, int pageSize)
-        {
-            PageIndex = pageIndex;
-            TotalPages = (int)Math.Ceiling(count / (double)pageSize);
-
-            this.AddRange(items);
-        }
-
-        public bool HasPreviousPage
-        {
-            get
-            {
-                return (PageIndex > 1);
-            }
-        }
-
-        public bool HasNextPage
-        {
-            get
-            {
-                return (PageIndex < TotalPages);
-            }
-        }
+        public int PageIndex { get; set; }
+        public int TotalPages { get; set; }
+        public bool HasPreviousPage { get; set; }
+        public bool HasNextPage { get; set; }
+        public List<PostViewModel> PostViewModels { get; set; }
     }
 }

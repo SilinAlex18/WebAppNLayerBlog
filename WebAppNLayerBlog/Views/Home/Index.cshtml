@@ -1,5 +1,5 @@
 ﻿@using WebAppNLayerBlog.BusinessLogicLayer.ViewModels.Guest
-@model PageViewModel<GuestIndexViewModel>
+@model PageViewModel
 @{
     ViewData["Title"] = "Home Page";
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
@@ -21,7 +21,7 @@
 </div>
 
 <div class="row">
-    @foreach (var posts in Model)
+    @foreach (var posts in Model.PostViewModels)
     {
         <div class="col-sm-6">
             <div class="card">

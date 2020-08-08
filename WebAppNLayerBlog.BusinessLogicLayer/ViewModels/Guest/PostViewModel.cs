@@ -5,7 +5,7 @@ using WebAppNLayerBlog.DataAccessLayer.Models;
 
 namespace WebAppNLayerBlog.BusinessLogicLayer.ViewModels.Guest
 {
-    public class GuestIndexViewModel
+    public class PostViewModel
     {
         public int Id { get; set; }
         public int CategoryId { get; set; }

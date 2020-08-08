@@ -11,7 +11,8 @@ namespace WebAppNLayerBlog.BusinessLogicLayer.Profiles
     {
         public GuestProfile()
         {
-            CreateMap<Post, GuestIndexViewModel>();
+            CreateMap<Post, PostViewModel>();
+            CreateMap<Post, PageViewModel>();
             CreateMap<Post, GuestDetailViewModel>();
         }
     }
